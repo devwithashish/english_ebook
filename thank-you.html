@@ -32,8 +32,7 @@
 
   <header style="padding:20px;border-bottom:1px solid rgba(255,255,255,0.08)">
     <div style="max-width:900px;margin:0 auto;display:flex;align-items:center;gap:11px">
-      <span style="display:grid;place-items:center;width:34px;height:34px;border-radius:10px;background:linear-gradient(140deg,#3D7BFF,#1B3FA0);color:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:14px">300</span>
-      <span class="jk" style="color:#fff;font-weight:700;font-size:15px">Business English Expressions</span>
+      <img src="fluent-edge-logo-white.png" alt="Fluent Edge Solutions" style="height:30px;width:auto;display:block" />
     </div>
   </header>
 
@@ -49,9 +48,9 @@
         </div>
         <div>
           <h2 class="jk" style="margin:0;color:#fff;font-size:clamp(21px,3vw,26px);font-weight:800;letter-spacing:-0.6px">Your eBook is ready</h2>
-          <p style="margin:12px 0 0;color:#C6D4EE;font-size:15.5px;line-height:1.6">75-page PDF · 300 expressions across 10 workplace categories.</p>
+          <p style="margin:12px 0 0;color:#C6D4EE;font-size:15.5px;line-height:1.6">85-page PDF · 300 expressions across 10 workplace categories.</p>
           <a href="{{ downloadUrl }}" onClick="{{ onDownload }}" download="300-Essential-Business-English-Expressions.pdf" class="jk" style="display:grid;place-items:center;margin-top:22px;background:linear-gradient(135deg,#FFD979,#F0B02F);color:#0A1533;font-weight:800;font-size:clamp(17px,2.2vw,19px);padding:20px 28px;border-radius:14px;min-height:56px;box-shadow:0 16px 38px rgba(240,176,47,0.34)" style-hover="filter:brightness(1.06);text-decoration:none;transform:translateY(-1px)">Download eBook</a>
-          <p style="margin:12px 0 0;color:#8FA6CE;font-size:13.5px">If the download doesn't start, right-click the button and choose "Save link as…".</p>
+          <p style="margin:12px 0 0;color:#8FA6CE;font-size:13.5px">Download not starting? <a ref="{{ openRef }}" target="_blank" rel="noopener" onClick="{{ onDownload }}" style="color:#9EC2FF;text-decoration:underline">Open the PDF in a new tab</a> and save it from there.</p>
         </div>
       </div>
 
@@ -75,20 +74,22 @@
 
   <footer style="padding:26px 20px;border-top:1px solid rgba(255,255,255,0.08)">
     <div style="max-width:900px;margin:0 auto;display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between">
-      <p style="margin:0;color:#5F779F;font-size:13px">© 2026 {{ authorName }}. All rights reserved.</p>
+      <p style="margin:0;color:#5F779F;font-size:13px">© 2026 Fluent Edge Solutions. All rights reserved.</p>
       <p style="margin:0;color:#5F779F;font-size:13px">Licensed for the original purchaser's personal use.</p>
     </div>
   </footer>
 
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;downloadUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;EBOOK_DOWNLOAD_URL&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Funnel&quot;},&quot;salesPageUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;SALES_PAGE_URL&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Funnel&quot;},&quot;authorName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Ashish Wani&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Author&quot;},&quot;contactEmail&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;fluentedgesolutions@gmail.com&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Author&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;downloadUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;300-Essential-Business-English-Expressions.pdf&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Funnel&quot;},&quot;salesPageUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;https://fluentedgesolutions.in/&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Funnel&quot;},&quot;authorName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Ashish Wani&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Author&quot;},&quot;contactEmail&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;fluentedgesolutions@gmail.com&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Author&quot;}}">
 /* ─────────────────────────────────────────────────────────────
    CENTRAL CONFIGURATION — keep in sync with Sales Page.dc.html
    ───────────────────────────────────────────────────────────── */
 const siteConfig = {
-  ebookDownloadUrl: "EBOOK_DOWNLOAD_URL",
-  salesPageUrl: "SALES_PAGE_URL",
+  // EBOOK_DOWNLOAD_URL — the PDF you sell. Sits beside these pages when deployed.
+  // Replace with a full https:// URL if you host the PDF elsewhere (Drive, S3, Dropbox).
+  ebookDownloadUrl: "300-Essential-Business-English-Expressions.pdf",
+  salesPageUrl: "https://fluentedgesolutions.in/",
   authorName: "AUTHOR_NAME",
   contactEmail: "CONTACT_EMAIL",
   gaMeasurementId: "",   // GA_MEASUREMENT_ID
@@ -131,6 +132,7 @@ class Component extends DCLogic {
       authorName: p.authorName ?? siteConfig.authorName,
       contactEmail: email,
       contactMailto: email && email.indexOf("@") > -1 ? "mailto:" + email : "#",
+      openRef: (el) => { const u = p.downloadUrl ?? getDownloadUrl(); if (el && u && el.getAttribute("href") !== u) el.setAttribute("href", u); },
       onDownload: () => trackEvent("ebook_download_click", { product: "300 Essential Business English Expressions" })
     };
   }
